@@ -133,7 +133,8 @@ export const actionGroup = register({
       generateCollaborationLinkData().then(({ roomId, roomKey }) => {
         startCollaboration({
           roomId,
-          roomKey: `${roomKey}&groupId=${newGroupId}`,
+          roomKey,
+          query: { groupId: newGroupId },
         });
       });
     }

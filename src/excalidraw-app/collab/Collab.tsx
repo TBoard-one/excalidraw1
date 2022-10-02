@@ -352,7 +352,11 @@ class Collab extends PureComponent<Props, CollabState> {
 
   startCollaboration = async (
     existingRoomLinkData: null | { roomId: string; roomKey: string },
-    newRoomLinkData?: null | { roomId: string; roomKey: string },
+    newRoomLinkData?: null | {
+      roomId: string;
+      roomKey: string;
+      query?: Record<string, string>;
+    },
   ): Promise<ImportedDataState | null> => {
     if (this.portal.socket) {
       return null;
@@ -369,10 +373,15 @@ class Collab extends PureComponent<Props, CollabState> {
       } else {
         ({ roomId, roomKey } = await generateCollaborationLinkData());
       }
+
+      const queryString = newRoomLinkData?.query
+        ? new URLSearchParams(newRoomLinkData.query).toString()
+        : undefined;
       window.history.pushState(
         {},
         APP_NAME,
-        getCollaborationLink({ roomId, roomKey }),
+        getCollaborationLink({ roomId, roomKey }) +
+          (queryString ? `&${queryString}` : ""),
       );
     }
 

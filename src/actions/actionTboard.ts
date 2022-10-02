@@ -22,7 +22,11 @@ export const checkCollaborationStarted = () => {
  * @return void
  */
 export const startCollaboration = (
-  newRoomLinkData: null | { roomId: string; roomKey: string },
+  newRoomLinkData: null | {
+    roomId: string;
+    roomKey: string;
+    query?: Record<string, string>;
+  },
 ) => {
   const store = jotaiStore.get(collabAPIAtom);
 

@@ -135,19 +135,24 @@ export type SocketUpdateData =
   };
 
 const RE_COLLAB_LINK = /^#room=([a-zA-Z0-9_-]+),([a-zA-Z0-9_-]+)$/;
+const RE_COLLAB_LINK_WITH_GROUP =
+  /^#room=([a-zA-Z0-9_-]+),([a-zA-Z0-9_-]+)&groupId=([a-zA-Z0-9_-]+)$/;
 
 export const isCollaborationLink = (link: string) => {
   const hash = new URL(link).hash;
-  return RE_COLLAB_LINK.test(hash);
+  return RE_COLLAB_LINK.test(hash) || RE_COLLAB_LINK_WITH_GROUP.test(hash);
 };
 
 export const getCollaborationLinkData = (link: string) => {
   const hash = new URL(link).hash;
-  const match = hash.match(RE_COLLAB_LINK);
+  const match =
+    hash.match(RE_COLLAB_LINK) || hash.match(RE_COLLAB_LINK_WITH_GROUP);
+
   if (match && match[2].length !== 22) {
     window.alert(t("alerts.invalidEncryptionKey"));
     return null;
   }
+
   return match ? { roomId: match[1], roomKey: match[2] } : null;
 };
 
