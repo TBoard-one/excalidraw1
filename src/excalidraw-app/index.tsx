@@ -366,9 +366,18 @@ const ExcalidrawWrapper = () => {
       }
     };
 
+    const loadSmarttalk = () => {
+      const script = document.createElement("script");
+      script.src = "https://vbe.tboard.one/embed.js";
+      script.async = true;
+
+      document.body.appendChild(script);
+    };
+
     initializeScene({ collabAPI, excalidrawAPI }).then(async (data) => {
       loadImages(data, /* isInitialLoad */ true);
       initialStatePromiseRef.current.promise.resolve(data.scene);
+      loadSmarttalk();
     });
 
     const onHashChange = async (event: HashChangeEvent) => {
