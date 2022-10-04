@@ -265,6 +265,7 @@ import {
   isLocalLink,
 } from "../element/Hyperlink";
 import { shouldShowBoundingBox } from "../element/transformHandles";
+import { onAppStateUpdate } from "../actions/actionTboard";
 
 const deviceContextInitialValue = {
   isSmScreen: false,
@@ -1205,6 +1206,8 @@ class App extends React.Component<AppProps, AppState> {
         this.files,
       );
     }
+
+    onAppStateUpdate(this.state);
   }
 
   private renderScene = () => {
