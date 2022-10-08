@@ -368,8 +368,17 @@ const ExcalidrawWrapper = () => {
 
     const loadSmarttalk = () => {
       const script = document.createElement("script");
-      script.src = "https://vbe.tboard.one/embed.js";
+      script.src = "https://vbe.tboard.one/static/dist/prod/js/embed.js";
       script.async = true;
+
+      script.onload = () => {
+        document.querySelector(".STIcon")?.addEventListener("click", () => {
+          window.ThirdOpinionoLoaderApi?.update({
+            url: "http://localhost:3000/#room=5a6e7194284fb8951288,JgMjXFu91EQ3P_qQK0ZQmQ&groupId=7SzAz5IHnxyL3ZDaDsRrr",
+            clickedCard: true,
+          });
+        });
+      };
 
       document.body.appendChild(script);
     };

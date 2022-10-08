@@ -20,6 +20,7 @@ import { LibraryButton } from "./LibraryButton";
 import { PenModeButton } from "./PenModeButton";
 import { Stats } from "./Stats";
 import { actionToggleStats } from "../actions";
+import { SmarttalkVideoButton } from "./SmarttalkVideoButton";
 
 type MobileMenuProps = {
   appState: AppState;
@@ -99,6 +100,7 @@ export const MobileMenu = ({
                   setAppState={setAppState}
                   isMobile
                 />
+                <SmarttalkVideoButton />
                 <PenModeButton
                   checked={appState.penMode}
                   onChange={onPenModeToggle}
