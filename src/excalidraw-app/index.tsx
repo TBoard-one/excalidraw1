@@ -375,6 +375,8 @@ const ExcalidrawWrapper = () => {
         document.querySelector(".STIcon")?.addEventListener("click", () => {
           window.ThirdOpinionoLoaderApi?.update({
             url: "http://localhost:3000/#room=5a6e7194284fb8951288,JgMjXFu91EQ3P_qQK0ZQmQ&groupId=7SzAz5IHnxyL3ZDaDsRrr",
+            startPage: "/main/news-article/",
+            categoryId: 0,
             clickedCard: true,
           });
         });
