@@ -40,6 +40,7 @@ import { useDevice } from "../components/App";
 import { Stats } from "./Stats";
 import { actionToggleStats } from "../actions/actionToggleStats";
 import Footer from "./Footer";
+import { SmarttalkVideoButton } from "./SmarttalkVideoButton";
 
 interface LayerUIProps {
   actionManager: ActionManager;
@@ -346,6 +347,7 @@ const LayerUI = ({
                         />
                       </Stack.Row>
                     </Island>
+                    <SmarttalkVideoButton />
                     <LibraryButton
                       appState={appState}
                       setAppState={setAppState}
