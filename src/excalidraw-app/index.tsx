@@ -368,7 +368,7 @@ const ExcalidrawWrapper = () => {
 
     const loadSmarttalk = () => {
       const script = document.createElement("script");
-      script.src = "https://vbe.tboard.one/static/dist/prod/js/embed.js";
+      script.src = "https://vbe.tboard.one/static/dist/local/js/embed.js";
       script.async = true;
 
       script.onload = () => {
