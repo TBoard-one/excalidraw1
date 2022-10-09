@@ -37,6 +37,7 @@ export const SmarttalkVideoButton: React.FC<{
       {...props}
     >
       {/*<div className="STVideo__icon">{STVIDEO_ICON}</div>*/}
+      <div id={"smarttalk-container-overlay"} style={{ display: "none" }}></div>
       <div id={"smarttalk-container"}></div>
 
       <div className="STVideo__icon">S</div>
