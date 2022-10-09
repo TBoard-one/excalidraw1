@@ -14,8 +14,7 @@ export const SmarttalkVideoButton: React.FC<{
   isMobile?: boolean;
 }> = ({ isMobile }) => {
   const props = {
-    "data-article-source":
-      "http://localhost:3000/#room=5a6e7194284fb8951288,JgMjXFu91EQ3P_qQK0ZQmQ&groupId=7SzAz5IHnxyL3ZDaDsRrr",
+    "data-article-source": window.location.href,
   };
   return (
     <label
