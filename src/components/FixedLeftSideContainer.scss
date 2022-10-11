@@ -1,0 +1,15 @@
+.excalidraw {
+  .FixedLeftSideContainer {
+    position: absolute;
+    pointer-events: none;
+    top: 4px;
+    bottom: 4px;
+    left: 4px;
+    width: var(--sidebarWidth);
+    border-radius: 8px;
+    padding: 0.5rem;
+    & section {
+      margin-bottom: 4px;
+    }
+  }
+}
