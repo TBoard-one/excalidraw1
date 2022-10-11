@@ -344,20 +344,26 @@
 
   .App-menu_bottom {
     position: absolute;
-    bottom: 0;
-    grid-template-columns: min-content auto min-content;
-    grid-gap: 15px;
-    align-items: flex-start;
+    bottom: 4px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: calc(100% - (var(--sidebarWidth) * 2) - (1rem * 2) - (0.5rem * 4));
     cursor: default;
     pointer-events: none !important;
+    display: flex;
+    justify-content: center;
+    // grid-template-columns: min-content auto min-content;
+    // grid-gap: 15px;
+    // align-items: flex-start;
 
-    :root[dir="ltr"] & {
-      left: 0.25rem;
-    }
+    // :root[dir="ltr"] & {
+    //   left: 0.25rem;
+    // }
 
-    :root[dir="rtl"] & {
-      right: 0.25rem;
-    }
+    // :root[dir="rtl"] & {
+    //   right: 0.25rem;
+    // }
 
     &--transition-left {
       section {
@@ -390,7 +396,14 @@
 
   .App-menu__left {
     overflow-y: auto;
-    box-shadow: var(--shadow-island);
+    // box-shadow: var(--shadow-island);
+    position: absolute;
+    right: 0.5rem;
+    top: 74px;
+    width: var(--sidebarWidth);
+    border-radius: 8px;
+    border: 3px solid gray;
+    box-sizing: border-box;
   }
 
   .dropdown-select {
