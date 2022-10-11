@@ -1,8 +1,8 @@
 /**
  * Custom actions функционала TBoard
  */
-import { isEmpty } from "lodash";
 import { APP_NAME } from "../constants";
+import { NonDeletedExcalidrawElement } from "../element/types";
 import { collabAPIAtom } from "../excalidraw-app/collab/Collab";
 import { jotaiStore } from "../jotai";
 import { AppState } from "../types";
@@ -40,26 +40,46 @@ export const startCollaboration = (
  * @param state
  * @returns
  */
-export const onAppStateUpdate = (state: AppState) => {
-  const { selectedGroupIds, selectedElementIds, collaborators } = state;
+export const onAppStateUpdate = (state: AppState) => {};
 
-  // Подстановка Id элемента или группы в урл
-  if (collaborators?.size > 0) {
+/**
+ * Функция изменения параметров урла
+ * @param selectedElements
+ * @param state
+ */
+export const extendUrlParams = (
+  selectedElements: NonDeletedExcalidrawElement[],
+  state: AppState,
+) => {
+  const { collaborators } = state;
+
+  if (!selectedElements.length) {
+    window.location.hash = window.location.hash.replace(
+      /&groupId=([a-zA-Z0-9_-]+)/,
+      "",
+    );
+  } else if (collaborators?.size > 0) {
     let selectedId = "";
-    if (!isEmpty(selectedGroupIds)) {
-      selectedId = Object.keys(selectedGroupIds)[0];
-    } else if (!isEmpty(selectedElementIds)) {
-      selectedId = Object.keys(selectedElementIds)[0];
+
+    if (selectedElements.length === 1) {
+      selectedId = selectedElements[0].id;
     } else {
-      window.location.hash = window.location.hash.replace(
-        /&groupId=([a-zA-Z0-9_-]+)/,
-        "",
-      );
+      const groupIds = selectedElements.reduce((acc, el) => {
+        acc = acc.concat(el.groupIds);
+        return acc;
+      }, [] as string[]);
+
+      const uniq = [...new Set(groupIds)];
+
+      if (uniq.length > 0) {
+        selectedId = uniq[0];
+      } else {
+        selectedId = selectedElements[0].id;
+      }
     }
 
     if (selectedId) {
       const match = window.location.hash.match(/groupId=([a-zA-Z0-9_-]+)/);
-
       if (match?.length === 2) {
         const newUrl = window.location.hash.replace(match[1], selectedId);
         window.history.pushState({}, APP_NAME, newUrl);

@@ -10,31 +10,33 @@ import { calculateScrollCenter, getSelectedElements } from "../scene";
 import { ExportType } from "../scene/types";
 import { AppProps, AppState, ExcalidrawProps, BinaryFiles } from "../types";
 import { muteFSAbortError } from "../utils";
-import { SelectedShapeActions, ShapesSwitcher } from "./Actions";
-import { BackgroundPickerAndDarkModeToggle } from "./BackgroundPickerAndDarkModeToggle";
-import CollabButton from "./CollabButton";
+import { SelectedShapeActions } from "./Actions";
+// import { BackgroundPickerAndDarkModeToggle } from "./BackgroundPickerAndDarkModeToggle";
+// import CollabButton from "./CollabButton";
 import { ErrorDialog } from "./ErrorDialog";
 import { ExportCB, ImageExportDialog } from "./ImageExportDialog";
 import { FixedSideContainer } from "./FixedSideContainer";
-import { HintViewer } from "./HintViewer";
+import { FixedLeftSideContainer } from "./FixedLeftSideContainer";
+import { FixedRightSideContainer } from "./FixedRightSideContainer";
+// import { HintViewer } from "./HintViewer";
 import { Island } from "./Island";
 import { LoadingMessage } from "./LoadingMessage";
-import { LockButton } from "./LockButton";
+// import { LockButton } from "./LockButton";
 import { MobileMenu } from "./MobileMenu";
 import { PasteChartDialog } from "./PasteChartDialog";
 import { Section } from "./Section";
 import { HelpDialog } from "./HelpDialog";
 import Stack from "./Stack";
-import { UserList } from "./UserList";
+// import { UserList } from "./UserList";
 import Library, { distributeLibraryItemsOnSquareGrid } from "../data/library";
 import { JSONExportDialog } from "./JSONExportDialog";
-import { LibraryButton } from "./LibraryButton";
+// import { LibraryButton } from "./LibraryButton";
 import { isImageFileHandle } from "../data/blob";
 import { LibraryMenu } from "./LibraryMenu";
 
 import "./LayerUI.scss";
 import "./Toolbar.scss";
-import { PenModeButton } from "./PenModeButton";
+// import { PenModeButton } from "./PenModeButton";
 import { trackEvent } from "../analytics";
 import { useDevice } from "../components/App";
 import { Stats } from "./Stats";
@@ -156,66 +158,66 @@ const LayerUI = ({
     );
   };
 
-  const Separator = () => {
-    return <div style={{ width: ".625em" }} />;
-  };
+  // const Separator = () => {
+  //   return <div style={{ width: ".625em" }} />;
+  // };
 
-  const renderViewModeCanvasActions = () => {
-    return (
-      <Section
-        heading="canvasActions"
-        className={clsx("zen-mode-transition", {
-          "transition-left": appState.zenModeEnabled,
-        })}
-      >
-        {/* the zIndex ensures this menu has higher stacking order,
-         see https://github.com/excalidraw/excalidraw/pull/1445 */}
-        <Island padding={2} style={{ zIndex: 1 }}>
-          <Stack.Col gap={4}>
-            <Stack.Row gap={1} justifyContent="space-between">
-              {renderJSONExportDialog()}
-              {renderImageExportDialog()}
-            </Stack.Row>
-          </Stack.Col>
-        </Island>
-      </Section>
-    );
-  };
+  // const renderViewModeCanvasActions = () => {
+  //   return (
+  //     <Section
+  //       heading="canvasActions"
+  //       className={clsx("zen-mode-transition", {
+  //         "transition-left": appState.zenModeEnabled,
+  //       })}
+  //     >
+  //       {/* the zIndex ensures this menu has higher stacking order,
+  //        see https://github.com/excalidraw/excalidraw/pull/1445 */}
+  //       <Island padding={2} style={{ zIndex: 1 }}>
+  //         <Stack.Col gap={4}>
+  //           <Stack.Row gap={1} justifyContent="space-between">
+  //             {renderJSONExportDialog()}
+  //             {renderImageExportDialog()}
+  //           </Stack.Row>
+  //         </Stack.Col>
+  //       </Island>
+  //     </Section>
+  //   );
+  // };
 
-  const renderCanvasActions = () => (
-    <Section
-      heading="canvasActions"
-      className={clsx("zen-mode-transition", {
-        "transition-left": appState.zenModeEnabled,
-      })}
-    >
-      {/* the zIndex ensures this menu has higher stacking order,
-         see https://github.com/excalidraw/excalidraw/pull/1445 */}
-      <Island padding={2} style={{ zIndex: 1 }}>
-        <Stack.Col gap={4}>
-          <Stack.Row gap={1} justifyContent="space-between">
-            {actionManager.renderAction("clearCanvas")}
-            <Separator />
-            {actionManager.renderAction("loadScene")}
-            {renderJSONExportDialog()}
-            {renderImageExportDialog()}
-            <Separator />
-            {onCollabButtonClick && (
-              <CollabButton
-                isCollaborating={isCollaborating}
-                collaboratorCount={appState.collaborators.size}
-                onClick={onCollabButtonClick}
-              />
-            )}
-          </Stack.Row>
-          <BackgroundPickerAndDarkModeToggle actionManager={actionManager} />
-          {appState.fileHandle && (
-            <>{actionManager.renderAction("saveToActiveFile")}</>
-          )}
-        </Stack.Col>
-      </Island>
-    </Section>
-  );
+  // const renderCanvasActions = () => (
+  //   <Section
+  //     heading="canvasActions"
+  //     className={clsx("zen-mode-transition", {
+  //       "transition-left": appState.zenModeEnabled,
+  //     })}
+  //   >
+  //     {/* the zIndex ensures this menu has higher stacking order,
+  //        see https://github.com/excalidraw/excalidraw/pull/1445 */}
+  //     <Island padding={2} style={{ zIndex: 1 }}>
+  //       <Stack.Col gap={4}>
+  //         <Stack.Row gap={1} justifyContent="space-between">
+  //           {actionManager.renderAction("clearCanvas")}
+  //           <Separator />
+  //           {actionManager.renderAction("loadScene")}
+  //           {renderJSONExportDialog()}
+  //           {renderImageExportDialog()}
+  //           <Separator />
+  //           {onCollabButtonClick && (
+  //             <CollabButton
+  //               isCollaborating={isCollaborating}
+  //               collaboratorCount={appState.collaborators.size}
+  //               onClick={onCollabButtonClick}
+  //             />
+  //           )}
+  //         </Stack.Row>
+  //         <BackgroundPickerAndDarkModeToggle actionManager={actionManager} />
+  //         {appState.fileHandle && (
+  //           <>{actionManager.renderAction("saveToActiveFile")}</>
+  //         )}
+  //       </Stack.Col>
+  //     </Island>
+  //   </Section>
+  // );
 
   const renderSelectedShapeActions = () => (
     <Section
@@ -227,12 +229,14 @@ const LayerUI = ({
       <Island
         className={CLASSES.SHAPE_ACTIONS_MENU}
         padding={2}
-        style={{
-          // we want to make sure this doesn't overflow so subtracting 200
-          // which is approximately height of zoom footer and top left menu items with some buffer
-          // if active file name is displayed, subtracting 248 to account for its height
-          maxHeight: `${appState.height - (appState.fileHandle ? 248 : 200)}px`,
-        }}
+        style={
+          {
+            // we want to make sure this doesn't overflow so subtracting 200
+            // which is approximately height of zoom footer and top left menu items with some buffer
+            // if active file name is displayed, subtracting 248 to account for its height
+            // maxHeight: `${appState.height - (appState.fileHandle ? 248 : 200)}px`,
+          }
+        }
       >
         <SelectedShapeActions
           appState={appState}
@@ -278,6 +282,27 @@ const LayerUI = ({
     />
   ) : null;
 
+  const renderFixedLeftSideContainer = () => {
+    return (
+      <>
+        <FixedLeftSideContainer
+          appState={appState}
+          actionManager={actionManager}
+        />
+      </>
+    );
+  };
+  const renderFixedRightSideContainer = () => {
+    return (
+      <>
+        <FixedRightSideContainer
+          appState={appState}
+          actionManager={actionManager}
+        />
+      </>
+    );
+  };
+
   const renderFixedSideContainer = () => {
     const shouldRenderSelectedShapeActions = showSelectedShapeActions(
       appState,
@@ -293,12 +318,12 @@ const LayerUI = ({
               "disable-pointerEvents": appState.zenModeEnabled,
             })}
           >
-            {appState.viewModeEnabled
+            {/* {appState.viewModeEnabled
               ? renderViewModeCanvasActions()
-              : renderCanvasActions()}
+              : renderCanvasActions()} */}
             {shouldRenderSelectedShapeActions && renderSelectedShapeActions()}
           </Stack.Col>
-          {!appState.viewModeEnabled && (
+          {/* {!appState.viewModeEnabled && (
             <Section heading="shapes">
               {(heading: React.ReactNode) => (
                 <Stack.Col gap={4} align="start">
@@ -370,7 +395,7 @@ const LayerUI = ({
               actionManager={actionManager}
             />
             {renderTopRightUI?.(device.isMobile, appState)}
-          </div>
+          </div> */}
         </div>
       </FixedSideContainer>
     );
@@ -443,12 +468,20 @@ const LayerUI = ({
                 : {}
             }
           >
+            {renderFixedLeftSideContainer()}
+            {renderFixedRightSideContainer()}
             {renderFixedSideContainer()}
             <Footer
               appState={appState}
               actionManager={actionManager}
               renderCustomFooter={renderCustomFooter}
               showExitZenModeBtn={showExitZenModeBtn}
+              onImageAction={onImageAction}
+              onPenModeToggle={onPenModeToggle}
+              onLockToggle={onLockToggle}
+              elements={elements}
+              canvas={canvas}
+              setAppState={setAppState}
             />
             {appState.showStats && (
               <Stats
