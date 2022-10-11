@@ -265,7 +265,7 @@ import {
   isLocalLink,
 } from "../element/Hyperlink";
 import { shouldShowBoundingBox } from "../element/transformHandles";
-import { onAppStateUpdate } from "../actions/actionTboard";
+import { extendUrlParams, onAppStateUpdate } from "../actions/actionTboard";
 
 const deviceContextInitialValue = {
   isSmScreen: false,
@@ -1208,6 +1208,13 @@ class App extends React.Component<AppProps, AppState> {
     }
 
     onAppStateUpdate(this.state);
+
+    const selectedElement = getSelectedElements(
+      this.scene.getNonDeletedElements(),
+      this.state,
+    );
+
+    extendUrlParams(selectedElement, this.state);
   }
 
   private renderScene = () => {
